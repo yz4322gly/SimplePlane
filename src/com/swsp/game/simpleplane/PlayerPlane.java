@@ -76,12 +76,14 @@ public class PlayerPlane
 	{
 		move();
 		if(live)
-		g.drawImage(playerPlaneImg, (int)x, (int)y, null);
+		{
+			g.drawImage(playerPlaneImg, x, y, null);
+		}
 	}
 	
 	public Rectangle getRectangle()
 	{
-		return new Rectangle((int) x, (int) y, playerPlaneImg.getWidth(null), playerPlaneImg.getHeight(null));
+		return new Rectangle(x, y, playerPlaneImg.getWidth(null), playerPlaneImg.getHeight(null));
 	}
 	
 	public void kill()

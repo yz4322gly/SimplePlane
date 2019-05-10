@@ -41,6 +41,7 @@ public class PlaneGameFrame extends GameFrame
 		a.launchFrame();
 	}
 	
+	@Override
 	public void paint(Graphics g)
 	{
 		g.drawImage(GameConstants.bg,	0, 0, null);
@@ -53,7 +54,7 @@ public class PlaneGameFrame extends GameFrame
 			i.draw(g);
 			if(playerPlane.getRectangle().intersects(i.getRectangle()) && playerPlane.isLive())
 			{
-				end.setTime(new Date().getTime());
+				end.setTime(System.currentTimeMillis());
 				i.kill() ;
 				playerPlane.kill();
 				break;
@@ -64,7 +65,7 @@ public class PlaneGameFrame extends GameFrame
 		{
 			
 			g.setColor(Color.WHITE);
-			g.setFont(new Font("ºÚÌå", 1, 100));
+			g.setFont(new Font("ºÚÌå", Font.BOLD, 100));
 			g.drawString("Game Over", 50, 200);
 			g.drawString(end.getTime()-start.getTime() + "ms", 120, 350);
 		}
@@ -75,7 +76,7 @@ public class PlaneGameFrame extends GameFrame
 	public void launchFrame()
 	{
 		super.launchFrame();
-		start.setTime(new Date().getTime());
+		start.setTime(System.currentTimeMillis());
 		System.out.println(start);
 		addKeyListener(new KeyMonitor());
 	}
@@ -88,11 +89,13 @@ public class PlaneGameFrame extends GameFrame
 	 */ 
 	class KeyMonitor extends KeyAdapter
 	{
+		@Override
 		public void keyPressed(KeyEvent e)
 		{
 			playerPlane.addDirection(e);
 		}
 		
+		@Override
 		public void keyReleased(KeyEvent e)
 		{
 			playerPlane.stopDirection(e);
